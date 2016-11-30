@@ -1,4 +1,5 @@
 import React from 'react';
+import { Embed, Container, Header } from 'semantic-ui-react';
 
 const VideoDetail = ({video}) => {
   if (!video) {
@@ -9,15 +10,16 @@ const VideoDetail = ({video}) => {
   const url = `https://www.youtube.com/embed/${videoId}`;
   console.log(url);
   return (
-      <div className="video-details col-md-8">
-        <div className="embed-responsive embed-responsive-16by9">
-          <iframe className="embed-responsive-item" src={url}></iframe>
-        </div>
-        <div className="details">
-          <div>{video.snippet.title}</div>
-          <div>{video.snippet.description}</div>
-        </div>
-      </div>
+      <Container>
+      <Header as='h2'>{video.snippet.title}</Header>
+      <Embed
+        id={videoId}
+        autoplay={false}
+        brandedUI={false}
+        source='youtube'
+      />
+      <p>{video.snippet.description}</p>
+      </Container>
     );
 }
 
